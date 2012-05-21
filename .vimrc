@@ -70,25 +70,6 @@ map ,/ :s/^/\/\//<CR>
 map ," :s/^/\"/<CR>
 map ,c :s/^\/\/\\|^--\\|^> \\|^[#"%!;]//<CR>
 
-" configure tags - add additional tags here or comment out not-used ones
-"set tags+=~/.vim/tags/autoauto
-"set tags+=~/.vim/tags/* , no wildcards, therefore manually: for X in ~/.vim/tags/* ; do echo -n $X,; done;
-"set tags=/home/dschoordsch/.vim/tags/boost,/home/dschoordsch/.vim/tags/eigen3,/home/dschoordsch/.vim/tags/opencv,/home/dschoordsch/.vim/tags/qt,/home/dschoordsch/.vim/tags/rtt,/home/dschoordsch/.vim/tags/stdlib.h,/home/dschoordsch/.vim/tags/vxl
-"set tags+=./tags;/
-
-" OmniCppComplete
-"let OmniCpp_NamespaceSearch = 1
-"let OmniCpp_GlobalScopeSearch = 1
-"let OmniCpp_ShowAccess = 1
-"let OmniCpp_MayCompleteDot = 1 " autocomplete after .
-"let OmniCpp_MayCompleteArrow = 1 " autocomplete after ->
-"let OmniCpp_MayCompleteScope = 0 " autocomplete after ::
-"let OmniCpp_DefaultNamespaces = ["std", "_GLIBCXX_STD"]
-"let OmniCpp_ShowScopeInAbbr = 1
-"let OmniCpp_ShowPrototypeInAbbr = 2
-"let OmniCpp_SelectFirstItem = 2
-
-
 " automatically open and close the popup menu / preview window
 "au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
 set completeopt=menuone,menu,longest,preview
@@ -101,12 +82,14 @@ let g:SuperTabDefaultCompletionType = "context"
 let g:clang_library_path="/usr/lib/llvm"
 let g:clang_auto_select=1
 let g:clang_snippets=1
-let g:clang_snippets_engine='snipmate'
-source /usr/share/vim/vimfiles/autoload/snippets/snipmate.vim
+" snipmate is crap
+" let g:clang_snippets_engine='snipmate'
+" source /usr/share/vim/vimfiles/autoload/snippets/snipmate.vim
 let g:clang_use_library=1
-let g:clang_complete_macros=1
-let g:clang_complete_patterns=1
+let g:clang_complete_macros=0
+let g:clang_complete_patterns=0
 let g:clang_auto_user_options='path, .clang_complete' ", gcc'
+let g:clang_complet_auto=0
 
 set makeprg=cd\ ~/AutoAuto/current/build;./make.vim\ &
 set errorformat+=%f:%l:\ %m,In\ file\ included\ from\ %f:%l:,\^I\^Ifrom\ %f:%l%m
@@ -114,7 +97,7 @@ set errorformat+=%f:%l:\ %m,In\ file\ included\ from\ %f:%l:,\^I\^Ifrom\ %f:%l%m
 "load errorfile
 noremap <C-E> <ESC>:cfile ~/.vim/errorfile<CR>
 
-set path+=,,~/AutoAuto/current/,/usr/include,/usr/local/include,/usr/include/orocos
+set path+=,,~/AutoAuto/**,/usr/include/**
 
 cscope add ~/AutoAuto/current/cscope.out ~/AutoAuto/current/
 
