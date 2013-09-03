@@ -105,3 +105,14 @@ fi
 
 function make() { echo "Creating errorfile" ; /usr/bin/make "$@" 2>&1 | tee ~/.vim/errorfile ; }
 
+session="$HOME/.dbus/session-bus/$(dbus-uuidgen --get)-$(echo $DISPLAY | sed -e 's/\([^:]*:\)//g' -e 's/\..*$//g')"
+if [ -e $session ] ; then
+    source $session
+fi
+
+MY_TTY=`tty`
+if [ "/dev/tty1" = $MY_TTY ] ; then
+	exec startxfce4
+fi
+
+export EDITOR=vim
