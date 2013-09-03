@@ -32,6 +32,8 @@ fi
 # set a fancy prompt (non-color, unless we know we "want" color)
 case "$TERM" in
     xterm) color_prompt=yes;;
+    screen) color_prompt=yes;;
+    screen-256color) color_prompt=yes;;
 esac
 
 # uncomment for a colored prompt, if the terminal has the capability; turned
@@ -109,7 +111,7 @@ function make() { echo "Creating errorfile" ; /usr/bin/make "$@" 2>&1 | tee ~/.v
 session="$HOME/.dbus/session-bus/$(dbus-uuidgen --get)-$(echo $DISPLAY | sed -e 's/\([^:]*:\)//g' -e 's/\..*$//g')"
 if [ -e $session ] ; then
     source $session
-f
+fi
 
 MY_TTY=`tty`
 if [ "/dev/tty1" = $MY_TTY ] ; then
@@ -117,3 +119,5 @@ if [ "/dev/tty1" = $MY_TTY ] ; then
 fi
 
 export EDITOR=vim
+PROMPT_COMMAND="YEAR=\$(date +%Y) ; [[ \${YEAR} -le 2012 ]] && echo -e \"\e[0;31mWe have the year \${YEAR}\e[0m! \""
+			
