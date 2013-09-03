@@ -109,13 +109,13 @@ set undoreload=10000 "maximum number lines to save for undo on a buffer reload
 nnoremap <Leader>s :%s/\<<C-r><C-w>\>/
 
 "this info is more useful
-noremap <C-G> 2<C-G>
+" noremap <C-G> 2<C-G>
 
 " try for a while
-inoremap jj <C-C>
-inoremap :w<CR> <C-C>:w<CR>
-inoremap  <C-C>:w<CR>
-inoremap <F1> <C-C>
+" inoremap jj <C-C>
+" inoremap :w<CR> <C-C>:w<CR>
+" noremap <C-S> <C-C>:w<CR>
+noremap <F1> <C-C>
 
 "latex 
 let g:tex_flavor='latex'
