@@ -106,7 +106,11 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
 fi
 # PATH=/usr/lib/icecc/bin:$PATH
 
-function make() { echo "Creating errorfile" ; /usr/bin/make "$@" 2>&1 | tee ~/.vim/errorfile ; }
+function make() {
+	echo "Creating errorfile";
+	DATE=`date -R`;
+	/usr/bin/time --format="date=$DATE; walltime=%es; memory=%Mk" -o ~/.maketime -a /usr/bin/make "$@" 2>&1 | tee ~/.vim/errorfile;
+}
 
 session="$HOME/.dbus/session-bus/$(dbus-uuidgen --get)-$(echo $DISPLAY | sed -e 's/\([^:]*:\)//g' -e 's/\..*$//g')"
 if [ -e $session ] ; then
