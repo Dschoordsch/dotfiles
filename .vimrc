@@ -13,9 +13,9 @@ set wildmode=longest,list,full
 set wildmenu
 
 "diff
-nnoremap ,u :diffupdate<cr>
-nnoremap ,g :diffget<cr>
-nnoremap ,p :diffput<cr>
+nnoremap <Leader>u :diffupdate<cr>
+nnoremap <Leader>g :diffget<cr>
+nnoremap <Leader>p :diffput<cr>
 
 "search
 set incsearch
@@ -65,10 +65,10 @@ set softtabstop=4 " how many columns will code be intended, combines tabs and sp
 autocmd FileType python setlocal expandtab shiftwidth=4 tabstop=4 softtabstop=4 smartindent
 
 " lhs comments
-map ,# :s/^/#/<CR>
-map ,/ :s/^/\/\//<CR>
-map ," :s/^/\"/<CR>
-map ,c :s/^\/\/\\|^--\\|^> \\|^[#"%!;]//<CR>
+" map ,# :s/^/#/<CR>
+" map ,/ :s/^/\/\//<CR>
+" map ," :s/^/\"/<CR>
+" map ,c :s/^\/\/\\|^--\\|^> \\|^[#"%!;]//<CR>
 
 " automatically open and close the popup menu / preview window
 "au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
@@ -77,19 +77,19 @@ set completeopt=menuone,menu,longest,preview
 autocmd InsertLeave * if pumvisible() == 0|silent! pclose|endif "close preview window if leaving insert mode
 
 
-let g:SuperTabDefaultCompletionType = "context"
+" let g:SuperTabDefaultCompletionType = "context"
 
-let g:clang_library_path="/usr/lib/llvm"
+" let g:clang_library_path="/usr/lib/llvm"
 let g:clang_auto_select=1
 let g:clang_snippets=1
-" snipmate is crap
-" let g:clang_snippets_engine='snipmate'
-" source /usr/share/vim/vimfiles/autoload/snippets/snipmate.vim
+" " snipmate is crap
+" " let g:clang_snippets_engine='snipmate'
+" " source /usr/share/vim/vimfiles/autoload/snippets/snipmate.vim
 let g:clang_use_library=1
 let g:clang_complete_macros=0
 let g:clang_complete_patterns=0
-let g:clang_auto_user_options='path, .clang_complete' ", gcc'
-let g:clang_complet_auto=0
+" let g:clang_auto_user_options='path, .clang_complete' ", gcc'
+" let g:clang_complet_auto=0
 
 set makeprg=cd\ ~/AutoAuto/current/build;./make.vim\ &
 set errorformat+=%f:%l:\ %m,In\ file\ included\ from\ %f:%l:,\^I\^Ifrom\ %f:%l%m
