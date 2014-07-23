@@ -51,7 +51,6 @@ if [ -n "$force_color_prompt" ]; then
 	color_prompt=
     fi
 fi
-
 if [ "$color_prompt" = yes ]; then
     PS1='${debian_chroot:+($debian_chroot)}\u@\[\033[01;32m\]\h\[\033[00m\]:\w\$ '
 else
@@ -108,8 +107,7 @@ fi
 
 function make() {
 	echo "Creating errorfile";
-	DATE=`date -R`;
-	/usr/bin/time --format="date=$DATE; walltime=%es; memory=%Mk" -o ~/.maketime -a /usr/bin/make "$@" 2>&1 | tee ~/.vim/errorfile;
+	/usr/bin/make "$@" 2>&1 | tee ~/.vim/errorfile;
 }
 
 session="$HOME/.dbus/session-bus/$(dbus-uuidgen --get)-$(echo $DISPLAY | sed -e 's/\([^:]*:\)//g' -e 's/\..*$//g')"
@@ -124,4 +122,6 @@ fi
 
 export EDITOR=vim
 PROMPT_COMMAND="YEAR=\$(date +%Y) ; [[ \${YEAR} -le 2012 ]] && echo -e \"\e[0;31mWe have the year \${YEAR}\e[0m! \""
-			
+source ~/.git-prompt.sh
+PROMPT_COMMAND=${PROMPT_COMMAND}';__git_ps1 "${debian_chroot:+($debian_chroot)}\u@\[\033[01;32m\]\h\[\033[00m\]:\w" "\\\$ "'
+

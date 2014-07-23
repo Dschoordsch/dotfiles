@@ -50,13 +50,16 @@ map <Leader>/ :call ToggleCommentify()<CR>
 imap <M-c> <ESC>:call ToggleCommentify()<CR>j
 
 "appeareance
-color candycode
+set background=dark
+
+colorscheme twilight
+
 set guifont=DejaVu\ sans\ mono\ 8
 "set guifont=Bitstream\ Vera\ Sans\ Mono\ 8
 set number
 syntax on
 set cindent
-set equalprg="astyle --options=~/AutoAuto/current/artistic.style"
+set equalprg="astyle --options=~/AutoAuto/CORE/artistic.style"
 set backspace=2 " allow backspacing over everything in insert mode 
 set tabstop=4 " how many columns are one tab
 set shiftwidth=4 " how many columns will be indented when using >>, << or C-style
@@ -122,4 +125,6 @@ let g:tex_flavor='latex'
 
 noremap <A-Left> <C-O>
 noremap <A-Right> <C-I>
+
+let g:rainbow_active = 1 "0 if you want to enable it later via :RainbowToggle
 
