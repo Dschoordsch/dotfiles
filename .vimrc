@@ -97,7 +97,7 @@ set errorformat+=%f:%l:\ %m,In\ file\ included\ from\ %f:%l:,\^I\^Ifrom\ %f:%l%m
 "load errorfile
 noremap <C-E> <ESC>:cfile ~/.vim/errorfile<CR>
 
-set path+=,,~/AutoAuto/**,/usr/include/**
+set path+=,,~/AutoAuto/**,/usr/include/**,/usr/avr/include/**
 
 cscope add ~/AutoAuto/current/cscope.out ~/AutoAuto/current/
 
