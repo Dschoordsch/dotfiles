@@ -19,6 +19,10 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
+"Show html colors
+"Plug 'gko/vim-coloresque'
+Plug 'lilydjwg/colorizer'
+
 Plug 'scrooloose/nerdtree'
 " dead, slow with preview
 "Plug 'rking/ag.vim'
@@ -57,11 +61,15 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'tpope/vim-sleuth'
 Plug 'luochen1990/rainbow'
 
+"Move
+Plug 'tpope/vim-eunuch'
+
 "Git
 Plug 'tpope/vim-fugitive'
 Plug 'rbong/vim-flog'
 Plug 'lewis6991/gitsigns.nvim'
-"Hub
+Plug 'aaronhallaert/advanced-git-search.nvim'
+"GitHub
 Plug 'tpope/vim-rhubarb'
 
 "Debug
@@ -83,9 +91,9 @@ let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 
 " fixes glitch? in colors when using vim with tmux
-set background=dark
-set t_Co=256
-set termguicolors
+"set background=dark
+"set t_Co=256
+"set termguicolors
 
 colorscheme everforest
 let g:airline_solarized_bg='dark'
@@ -118,12 +126,18 @@ lua << EOF
 local telescope = require('telescope')
 telescope.load_extension('fzf')
 telescope.load_extension('media_files')
+telescope.load_extension('advanced_git_search')
 telescope.setup {
   pickers = {
     find_files = {
       hidden = true,
       find_command = { "fd", "--type", "f", "--strip-cwd-prefix" }
     },
+  },
+  extensions = {
+    advanced_git_search = {
+      diff_plugin = "fugitive",
+    }
   }
 }
 EOF
@@ -133,6 +147,7 @@ nnoremap <leader>fg <cmd>Telescope live_grep<cr>
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 nnoremap <leader>fw <cmd>Telescope grep_string<cr>
+nnoremap <leader>fs <cmd>Telescope lsp_document_symbols<cr>
 
 " All coc.nvim stuff
 let g:coc_global_extensions = ['coc-tsserver']
@@ -296,6 +311,8 @@ if has("persistent_undo")
     let &undodir=target_path
     set undofile
 endif
+
+command! Gadd w | Git add %
 
 " Add (Neo)Vim's native statusline support.
 " NOTE: Please see `:h coc-status` for integrations with external plugins that
